@@ -25,8 +25,8 @@ After completing this practical the trainee should be able to:
  
 \subsection{Tools Used}
 \begin{description}[style=multiline,labelindent=0cm,align=left,leftmargin=0.5cm]
-  \item[Bowtie]\hfill\\
-  	\url{http://bowtie-bio.sourceforge.net/index.shtml}
+%  \item[Bowtie]\hfill\\
+%  	\url{http://bowtie-bio.sourceforge.net/index.shtml}
   \item[Bowtie 2]\hfill\\
   	\url{http://bowtie-bio.sourceforge.net/bowtie2/index.shtml}
   \item[Samtools]\hfill\\
@@ -61,7 +61,7 @@ After completing this practical the trainee should be able to:
 \begin{information}
 The goal of this hands-on session is to perform an unspliced alignment for a
 small subset of raw reads. We will align raw sequencing data to the mouse genome
-using Bowtie and then we will manipulate the SAM output in order to
+using Bowtie2 and then we will manipulate the SAM output in order to
 visualize the alignment on the IGV browser.
 \end{information}
 
@@ -92,19 +92,19 @@ sake of time, we will align these reads to a single mouse chromosome.
 \begin{information}
 You already know that there are a number of competing tools for short read
 alignment, each with its own set of strengths, weaknesses, and caveats. Here we
-will try Bowtie, a widely used ultrafast, memory efficient short read
+will try Bowtie2, a widely used ultrafast, memory efficient short read
 aligner.
 \end{information}
 
 \begin{steps}
-Bowtie has a number of parameters in order to perform the alignment. To
+Bowtie2 has a number of parameters in order to perform the alignment. To
 view them all type
 
 \begin{lstlisting}
-bowtie --help
+bowtie2 --help
 \end{lstlisting}
 
-Bowtie uses indexed genome for the alignment in order to keep its memory
+Bowtie2 uses indexed genome for the alignment in order to keep its memory
 footprint small. Because of time constraints we will build the index only for
 one chromosome of the mouse genome. For this we need the chromosome sequence in
 FASTA format. This is stored in a file named \texttt{mm10}, under the
@@ -113,7 +113,7 @@ subdirectory \texttt{bowtie\_index}.
 The indexed chromosome is generated using the command:
 
 \begin{lstlisting}
-bowtie-build bowtie_index/mm10.fa bowtie_index/mm10
+bowtie2-build bowtie_index/mm10.fa bowtie_index/mm10
 \end{lstlisting}
 
 This command will output 6 files that constitute the index. These files that
@@ -127,17 +127,17 @@ ls -l bowtie_index
 
 \begin{information}
 Now that the genome is indexed we can move on to the actual alignment. The first
-argument for \texttt{bowtie} is the basename of the index for the genome to be searched;
+argument for \texttt{bowtie2} is the basename of the index for the genome to be searched;
 in our case this is \texttt{mm10}. We also want to make sure that the output is
 in SAM format using the \texttt{-S} parameter. The last argument is the name of the
 FASTQ file.
 \end{information}
 
 \begin{steps}
-Align the Oct4 reads using Bowtie: 
+Align the Oct4 reads using Bowtie2: 
 
 \begin{lstlisting}
-bowtie bowtie_index/mm10 -S Oct4.fastq > Oct4.sam
+bowtie2 bowtie_index/mm10 -S Oct4.fastq > Oct4.sam
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
@@ -145,7 +145,7 @@ file \texttt{Oct4.sam}.
 \end{steps}
 
 \begin{note}
-In general before you run Bowtie, you have to know what quality encoding your FASTQ files
+In general before you run Bowtie2, you have to know what quality encoding your FASTQ files
 are in. The available FASTQ encodings for bowtie are:
 
 \begin{description}[style=multiline,labelindent=0cm,align=right,leftmargin=\descriptionlabelspace,rightmargin=1.5cm,font=\ttfamily]
@@ -157,9 +157,9 @@ are in. The available FASTQ encodings for bowtie are:
 \end{description}
 
 The FASTQ files we are working with are Sanger encoded (Phred+33), which is the
-default for Bowtie.
+default for Bowtie2.
 
-Bowtie will take 2-3 minutes to align the file. This is fast compared to
+Bowtie2 will take 2-3 minutes to align the file. This is fast compared to
 other aligners which sacrifice some speed to obtain higher sensitivity.
 \end{note}
 
@@ -176,17 +176,16 @@ Can you distinguish between the header of the SAM format and the actual alignmen
 \begin{answer}
 The header line starts with the letter `@', i.e.: 
 
-\begin{tabular}{llll}
-@HD & VN:1.0 & SO:unsorted & \\
-@SQ & SN:chr1 & LN:197195432 & \\
-@PG & ID:Bowtie &      VN:0.12.8  & CL:``bowtie bowtie\_index/mm10 -S
-Oct4.fastq'' \\
+\begin{tabular}{lllll}
+@HD & VN:1.0 & SO:unsorted & & \\
+@SQ & SN:chr1 & LN:195471971 & & \\
+@PG & ID:Bowtie2 &  PN:bowtie2   & VN:2.2.4  & CL:``/tools/bowtie2/bowtie2-default/bowtie2-align-s --wrapper basic-0 -x bowtie\_index/mm10 -q Oct4.fastq'' \\
 \end{tabular}
 
 While, the actual alignments start with read id, i.e.:
 
 \begin{tabular}{llll}
-SRR002012.45 & 0 & chr1 & etc \\
+SRR002012.45 & 0 & etc & \\
 SRR002012.48 & 16 & chr1 & etc \\
 \end{tabular}
 \end{answer}
@@ -310,8 +309,7 @@ Now we will load the data into the IGV browser for visualization. In order to
 launch IGV double click on the \texttt{IGV 2.3} icon on your Desktop. Ignore any warnings
 and when it opens you have to load the genome of interest.
 
-On the top left of your screen choose from the drop down menu \texttt{Mus musculus
-(mm10)}. Then in order to load the desire files go to:
+On the top left of your screen choose from the drop down menu \texttt{Mouse (mm10)}. If it doesn't appear in list, click \texttt{More ..}, type \texttt{mm10} in the Filter section, choose the mouse genome and press OK. Then in order to load the desire files go to:
 
 \begin{lstlisting}[style=command_syntax]
 File > Load from File
@@ -353,6 +351,6 @@ is Thymidine (T).
 \section{Practice Makes Perfect!}
 \begin{steps}
 In the chipseq folder you will find the file \texttt{gfp.fastq}. Follow the
-above described analysis, from the bowtie alignment step, for this dataset as
+above described analysis, from the bowtie2 alignment step, for this dataset as
 well. You will need these files for the ChIP-Seq module.
 \end{steps}
