@@ -137,7 +137,7 @@ FASTQ file.
 Align the Oct4 reads using Bowtie2: 
 
 \begin{lstlisting}
-bowtie2 bowtie_index/mm10 -S Oct4.fastq > Oct4.sam
+bowtie2 -x bowtie_index/mm10 -q Oct4.fastq > Oct4.sam
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
