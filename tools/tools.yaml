@@ -1,22 +1,22 @@
 btp::analysis_tools:
   bowtie_1.1.1-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   bowtie2_2.2.4-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   samtools_0.1.18-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   bedtools_2.22.1-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   ucsctools_310-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   igv_2.3.59-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
   igvtools_2.3.59-0_amd64.deb:
     source: 'https://swift.rc.nectar.org.au:8888/v1/AUTH_809/Tools'
-    provider: 'dpkg'
+    provider: 'apt'
