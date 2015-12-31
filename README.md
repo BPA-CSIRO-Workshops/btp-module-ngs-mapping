@@ -1,5 +1,22 @@
 # btp-module-ngs-mapping
-Bioinformatics Training Platform (BTP) Module: NGS mapping
+Bioinformatics Training Platform (BTP) Module: NGS Read Mapping
+
+  * Topic
+    * NGS Read Mapping
+  * Target Audience
+    * Biologists
+	* Non-bioinformaticians
+	* Little to no programming expereience
+  * Prerequisites
+    * None
+  * Key Learning Outcomes
+    * Perform the simple NGS data alignment task against one interested reference data
+    * Interpret and manipulate the mapping output using SAMtools
+    * Visualise the alignment via a standard genome browser, e.g. IGV browser
+  * Time Required
+    * 
+  * Compute Requirements
+    * 
 
 License
 =======
