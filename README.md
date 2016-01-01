@@ -14,7 +14,7 @@ Bioinformatics Training Platform (BTP) Module: NGS Read Mapping with Bowtie2
     * Interpret and manipulate the mapping output using SAMtools
     * Visualise the alignment via a standard genome browser, e.g. IGV browser
   * Time Required
-    * 
+    * 2 hrs
   * Compute Requirements
     * 
 
