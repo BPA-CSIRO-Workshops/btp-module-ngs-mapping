@@ -25,12 +25,10 @@ After completing this practical the trainee should be able to:
  
 \subsection{Tools Used}
 \begin{description}[style=multiline,labelindent=0cm,align=left,leftmargin=0.5cm]
-%  \item[Bowtie]\hfill\\
-%  	\url{http://bowtie-bio.sourceforge.net/index.shtml}
   \item[Bowtie2]\hfill\\
   	\url{http://bowtie-bio.sourceforge.net/bowtie2/index.shtml}
   \item[Samtools]\hfill\\
-  	\url{http://picard.sourceforge.net/}
+  	\url{http://broadinstitute.github.io/picard}
   \item[BEDTools]\hfill\\
   	\url{http://code.google.com/p/bedtools/}
   \item[UCSC tools]\hfill\\
@@ -45,7 +43,7 @@ After completing this practical the trainee should be able to:
   \item[SAM Specification]\hfill\\
     \url{http://samtools.sourceforge.net/SAM1.pdf}
   \item[Explain SAM Flags]\hfill\\
-    \url{http://picard.sourceforge.net/explain-flags.html}
+    \url{https://broadinstitute.github.io/picard/explain-flags.html}
 \end{description}
 
 \subsection{Sources of Data}
@@ -164,10 +162,11 @@ other aligners which sacrifice some speed to obtain higher sensitivity.
 \end{note}
 
 \begin{steps}
-Look at the top 10 lines of the SAM file by typing:
+Look at the top 10 lines of the SAM file using head (record lines are wrapped). Then try the second command,  note use arrow navigation and to exit type 'q'.
 
 \begin{lstlisting}
-head -n 10 Oct4.sam
+head  Oct4.sam 
+less -S Oct4.sam
 \end{lstlisting}
 \end{steps}
 
