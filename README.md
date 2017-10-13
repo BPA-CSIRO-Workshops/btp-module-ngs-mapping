@@ -1,4 +1,4 @@
-# btp-module-ngs-mapping
+# NGS Read Mapping
 Bioinformatics Training Platform (BTP) Module: NGS Read Mapping with Bowtie2
 
   * Topic
